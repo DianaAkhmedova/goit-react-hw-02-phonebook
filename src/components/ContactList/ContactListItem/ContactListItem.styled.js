@@ -8,10 +8,15 @@ export const ContactItem = styled.li`
   justify-content: space-between;
   border: 1px solid black;
   border-radius: 4px;
+  background-color: #9faeb6;
 
   &:not(:last-child) {
     margin-bottom: 4px;
   }
+`;
+
+export const ContactInfo = styled.p`
+  font-weight: 500;
 `;
 
 export const RemoveBtn = styled.button`
@@ -19,7 +24,7 @@ export const RemoveBtn = styled.button`
   padding: 5px 12px;
   border: 1px solid red;
   border-radius: 4px;
-  background-color: transparent;
+  background-color: white;
   font-family: inherit;
   font-size: 16px;
   cursor: pointer;
