@@ -1,19 +1,24 @@
 import PropTypes from 'prop-types';
+import {
+  Form,
+  FormLabel,
+  FormInput,
+} from 'components/ContactForm/ContactForm.styled';
 
 const Filter = ({ filterValue, handleChangeFilter }) => {
   return (
-    <form>
-      <label>
+    <Form>
+      <FormLabel>
         Find contacts by name
-        <input
+        <FormInput
           type="text"
           name="contactName"
           value={filterValue}
           placeholder="Enter name"
           onChange={handleChangeFilter}
         />
-      </label>
-    </form>
+      </FormLabel>
+    </Form>
   );
 };
 export default Filter;
