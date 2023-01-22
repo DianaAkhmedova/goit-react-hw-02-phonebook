@@ -27,6 +27,13 @@ export const FormInput = styled.input`
 
   max-width: 400px;
   font-size: 18px;
+
+  &::placeholder {
+    font-size: 14px;
+    line-height: 1.14;
+    letter-spacing: 0.01em;
+    color: rgba(117, 117, 117, 0.5);
+  }
 `;
 
 export const AddBtn = styled.button`
