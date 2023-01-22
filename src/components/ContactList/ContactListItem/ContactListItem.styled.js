@@ -8,7 +8,7 @@ export const ContactItem = styled.li`
   justify-content: space-between;
   border: 1px solid black;
   border-radius: 4px;
-  background-color: #9faeb6;
+  background-color: #aab7be;
 
   &:not(:last-child) {
     margin-bottom: 4px;
