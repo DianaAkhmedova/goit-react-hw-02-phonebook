@@ -8,8 +8,8 @@ class ContactForm extends Component {
     number: '',
   };
 
-  handleChange = event => {
-    const { name, value } = event.currentTarget;
+  handleChange = ({ currentTarget }) => {
+    const { name, value } = currentTarget;
 
     this.setState({ [name]: value });
   };
@@ -26,12 +26,13 @@ class ContactForm extends Component {
 
   render() {
     const { name, number } = this.state;
+    const { handleSubmit, handleChange } = this;
     return (
-      <Form onSubmit={this.handleSubmit} name="contactForm" autoComplete="on">
+      <Form onSubmit={handleSubmit} name="contactForm" autoComplete="on">
         <FormLabel>
           Name
           <FormInput
-            onChange={this.handleChange}
+            onChange={handleChange}
             type="text"
             name="name"
             value={name}
@@ -45,7 +46,7 @@ class ContactForm extends Component {
         <FormLabel>
           Number
           <FormInput
-            onChange={this.handleChange}
+            onChange={handleChange}
             type="tel"
             name="number"
             value={number}

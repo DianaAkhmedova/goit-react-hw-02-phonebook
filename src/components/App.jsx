@@ -22,12 +22,10 @@ class App extends Component {
 
   addContact = contact => {
     const { contacts } = this.state;
-    const newContact = { ...contact };
-    newContact.id = nanoid();
+    const newContact = { ...contact, id: nanoid() };
 
     const isContainsContact = contacts.some(
-      ({ name }) =>
-        name.toLocaleLowerCase() === newContact.name.toLocaleLowerCase()
+      ({ name }) => name.toLowerCase() === newContact.name.toLowerCase()
     );
 
     if (isContainsContact)
@@ -44,37 +42,39 @@ class App extends Component {
     this.setState({ filter: value });
   };
 
-  contactsFilter() {
+  getFilteredContacts() {
     const { contacts, filter } = this.state;
+    if (!filter) {
+      return contacts;
+    }
 
     return contacts.filter(contact =>
-      contact.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase())
+      contact.name.toLowerCase().includes(filter.toLowerCase())
     );
   }
 
   removeContact = contactId =>
-    this.setState(({ contacts }) => ({
-      contacts: [...contacts].filter(({ id }) => id !== contactId),
-    }));
+    this.setState(({ contacts }) =>
+      // {contacts: [...contacts].filter(({ id }) => id !== contactId),}
+      ({ contacts: contacts.filter(({ id }) => id !== contactId) })
+    );
 
   render() {
     const { contacts, filter } = this.state;
-    const filteredContacts = this.contactsFilter();
+    const { addContact, handleChangeFilter, removeContact } = this;
+    const filteredContacts = this.getFilteredContacts();
 
     return (
       <PhonebookContainer>
         <PhonebookTitle>Phonebook</PhonebookTitle>
-        <ContactForm addContact={this.addContact} />
+        <ContactForm addContact={addContact} />
 
         <ContactsTitle>Contacts</ContactsTitle>
-        <Filter
-          filterValue={filter}
-          handleChangeFilter={this.handleChangeFilter}
-        />
+        <Filter filterValue={filter} handleChangeFilter={handleChangeFilter} />
         {contacts.length > 0 && (
           <ContactList
             contacts={filteredContacts}
-            removeContact={this.removeContact}
+            removeContact={removeContact}
           />
         )}
       </PhonebookContainer>
