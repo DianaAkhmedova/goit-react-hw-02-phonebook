@@ -5,10 +5,11 @@ const ContactList = ({ contacts, removeContact }) => {
   const contactsItem = contacts.map(({ id, name, number }) => (
     <ContactListItem
       key={id}
+      id={id}
       name={name}
       number={number}
       type="button"
-      onClick={() => removeContact(id)}
+      removeContact={removeContact}
     />
   ));
   return <ul>{contactsItem}</ul>;
